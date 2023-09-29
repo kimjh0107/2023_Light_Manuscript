@@ -1,0 +1,252 @@
+# Abstract
+
+# INTRODUCTION
+
+<!-- !가설에서는 RI를 뺀다 -->
+<!-- !Focusing on CD8-->
+<!-- !응급한 immune status확인 sepsis에서로 제한-->
+
+<!-- ?sepsis 정의 및 immune status가 중요하다 -->
+
+Sepsis is a serious and often deadly condition that occurs when the body's response to infection causes inflammation throughout the body. Despite efforts to improve recognition and treatment, sepsis and its most severe form, septic shock, still have high mortality rates. Currently, the diagnosis and prognosis of sepsis and septic shock primarily rely on clinical criteria, and while multiple biomarkers have been studied, none of them are accurate enough to be used alone in clinical practice. To identify patients who would benefit the most from targeted interventions, new tools are needed to accurately characterize the various pathogen and host factors that influence outcomes for patients with sepsis and septic shock.
+One aspect of sepsis to consider is the host immune response, which is complex and often involves a proinflammatory phase with the release of cytokines such as TNF-α and IL-6. T cells, particularly CD8+ T cells or cytotoxic T lymphocytes (Tc cells), play a vital role in sepsis [@He2021Immune]. T cells produce INF-γ and IL-17 within the first 24 hours of sepsis, which enhance innate immune function [@Kasten2010CELLS], and naive pathogen-specific CD8 T cells are important for infection clearance and the generation of memory CD8 T cells [@Danahy2016Clinicala]. However, T cell activation can also lead to exhaustion in sepsis, resulting in decreased immune function [@].
+
+Optical microscopy is a commonly used technique for studying micro-objects, but it has limitations and can alter cellular processes through the use of fluorescent stains and molecular markers. Holotomography is a method that avoids these issues by offering high sensitivity and the ability to present images in absolute values without the need for invasive interventions or sample preparation [@Vasilenko2017Opportunities]. It also allows for the real-time study of cellular processes and can provide measurements of nuclear refractivity, which is the degree of chromatin decondensation and can be used as a quantitative criterion for evaluating the dynamics of nuclear proteins and chromatin in normal and pathological conditions [@Vasilenko2017Opportunities].
+
+In this study, we hypothesized that the cell refractive index of sepsis patients would differ from that of a healthy group and that this would allow us to distinguish between sepsis and healthy individuals based on their T cell refractive index. We used holotomography to evaluate T cell refractive index in sepsis patients and healthy controls and to determine whether T cell refractive index could be used to distinguish between the two groups. Our results suggest that T cell refractive index may be a useful tool for distinguishing between sepsis and healthy individuals and for monitoring the immune response in sepsis.
+
+<!-- ?실제 sepsis 환자에서 recovery 됨에 따라 immune status가 달라진다 -->
+<!-- ? 여기에서는 sepsis 단계 및 healthy control에서는 RI distribution (cell morphological phenotype)이 달라짐을 보이고 -->
+<!-- ? 이것이 실제 환자를 진단하거나 예후를 예측하는데 도움이 됨을 보여주고자 한다. -->
+<!-- 가설: CD8+ T cell의 RI distribution이 현재 패혈증의 상태별로 다르다.-->
+
+# RESULTS
+
+<!-- ? Story -->
+<!-- ? 가설: cell epigenetic (nucleus) landscape가 sepsis status에 따라 변화한다  -->
+
+## Longitudinal [[3D RI Tomogram]] [[CD8+ T cell]] in sepsis patients
+
+<!-- ? 각각의 patient 별 immune status가 다르다  (Figure 1 or Extended Figure 1) -->
+<!-- ? 이렇게 다른 immune status 별로 cell epigenetic change를 볼 수 있는 RI를 측정했는데 크게 다르다 (Figure 1) -->
+
+We acquired [[3D RI Tomogram]] on [[CD8+ T cell]]s from people with sepsis and controls to define the range of cell states present in these subjects, to identify differences in cell-state composition between groups, and to detect immune signatures that distinguish sepsis from the normal immune response to bacterial infection (Fig. 1) supplementary. 
+
+Optical section of the cell in each group were observed. The dry mass, and mean RI values of optical section of the cell were higher in sepic shock group than in any other groups. 
+```{r}
+#| label:
+#| echo: false
+#| message: false
+#| fig.align: 'center'
+#| fig.cap:
+#| out.width: '100%'
+knitr::include_graphics(here(""))
+```
+
+
+## Different [[3D RI Tomogram]] distribution between septic shock status and healthy control
+
+We examined whether the distribution of refractive index (RI) differs between septic shock patients and healthy patients. To analyze the spatial distribution of RI, we divided two-dimensional cell images into eight shells based on optical sections and numbered them from 1 to 8, starting from the center and moving towards the periphery. We also classified RI into high (RI > 1.38), medium (1.36 < RI < 1.38), and low (1.345 < RI < 1.36) categories and evaluated the density of each category in each shell (Fig. \@ref(fig:figure2)A). In septic shock, the distribution of high RI was higher in all shells (p-value ##) and the elbow point of density was slightly more peripheral compared to other groups (Fig. \@ref(fig:figure2)B). As a result, the density of medium RI was relatively lower (Fig. \@ref(fig:figure2)B). Additionally, overall, the elbow was more peripheral in septic shock (Fig. \@ref(fig:figure2)D). Generally, high RI is associated with an increased proportion of the nucleus, which may indicate increased nuclear size and transcriptional activity as well as larger cell size in septic shock.
+
+```{r}
+#| label: figure2
+#| echo: false
+#| message: false
+#| fig.align: 'center'
+#| fig.cap:
+#| out.width: '100%'
+knitr::include_graphics(here(""))
+```
+
+
+## Deep Learning Models for Sepsis Diagnosis and Prognosis Using [[3D Refractive Index of Cell]]
+
+<!-- ? RI distribution을 가지고 sepsis의 근본적인 문제(진단, 예후)를 예측할 수 있는 모델을 만들었더니 다른 clinical 지표보다 더 나은 결과를 보인다. (Figure 4)-->
+
+We observed that the distribution of RI varies according to the severity of sepsis, and we sought to determine whether the distribution of RI itself can be used to diagnose and predict the prognosis of sepsis. To this end, we developed deep learning models that can distinguish between sepsis and healthy individuals (diagnosis model) and between survivors and non-survivors in septic shock (prognosis model). When only a single cell was considered, the average AUROC for both the diagnosis and prognosis models was ## and ##, respectively. However, when we generated an ensemble model using multiple cells, we found that the AUROC was almost always greater than 99% when three or more cells were used (Figure \@ref(fig:diagnosis-prognosis-model)A, B). These results show that our approach performs significantly better than established clinical indicators such as NEWS, MEWS, SOFA, and qSOFA, with AUROC values of ##, ##, ##, ## for diagnosis and ##, ##, ##, ## for prognosis, respectively. Furthermore, when we examined the AUROC with random sampling to account for possible selection bias, we found that the range of AUROC decreased as the number of cells increased (Figure \@ref(fig:diagnosis-prognosis-model)C, D).
+<!--SOFA_score = np.array([0.56, 0.77])
+    SIRS_score = np.array([0.5, 0.75])
+    qSOFA_score = np.array([0.16, 0.56])
+    MEWS_score = np.array([0.27, 0.80]) -->
+```{r}
+#| label: diagnosis-prognosis-model
+#| echo: false
+#| message: false
+#| fig.align: 'center'
+#| fig.cap:
+#| out.width: '100%'
+knitr::include_graphics(here(""))
+```
+
+<!-- Analytical validation and comparison of available T cell assays.
+Second, each method has a different dynamic range, but we were able to use our large set of data to establish robust thresholds to
+call true positives and true negatives, and to assess specificity, sen- sitivity and accuracy of the different assays. We also performed standard receiver operating characteristic (ROC) curve analysis to calculate the area under the curve (AUC)35. Overall, all assays have high accuracy and AUC > 0.90 (Fig. 4a,b and Supplementary Tables 6–13). We computed two-sided Fisher’s exact tests for each assay, reporting the associated P values and odds ratios (with cor- responding 95% CIs) in Supplementary Table 14. These additional metrics confirm the high standards of the qTACT and dqTACT tests, which are comparable to the gold standard ELLA and ELISpot assays. These assays will be useful for the evaluation of cellular immunity toward future vaccines and variants, each with their advantages and limitations. Traditional flow cytometry and ELISpot have the highest specificity and sensitivity, but are diffi- cult to scale given the intense labor time needed to isolate PBMCs. Whole-blood-based assays are very comparable in terms of speci- ficity, sensitivity and accuracy. The strongest downside of ELLA, which directly quantifies IFN-γ secretion, is the price per sample, -->
+
+## [[3D RI Tomogram]] correlates with clinical value in sepsis patients
+
+<!-- ? 실제 이러한 RI의 분포가 clinical value와도 관련이 있더라(SOFA, Cytokines, WBC, CRP 등등) (Figure 3)-->
+RI분포만을 가지고 실제 환자의 진단이나 예후 예측이 가능하여 실제 clinical feature들과의 관계도 확인해보았다. 이러한 RI distribution과 임상 지표인 SOFA score 및 laboratory test인 WBC, neutrophil, lymphocyte, CRP, 또한, cytokine level과의 association을 확인하였다.
+
+\@ref(fig:figure4)
+
+```{r}
+#| label: figure4
+#| echo: false
+#| message: false
+#| fig.align: 'center'
+#| fig.cap:
+#| out.width: '100%'
+knitr::include_graphics(here(""))
+```
+
+## Visual explanation of the deep learning model
+
+We applied the [[Grad-CAM algorithm]][@Selvaraju2020GradCAM] to understand which regions of the [[cell images]] were most important for the deep learning model's prediction. Figure \@ref(fig:figure5) shows representative examples of cell images with accompanying saliency heatmaps, which highlight the features that had the greatest influence on the model's prediction. By examining the heatmaps, we can see that the model was basing its prediction on features within the nucleus and cytoplasm of the cells. The heatmaps also varied between different time points, indicating that the model could recognize changes in the relative importance (RI) of these features over time.
+```{r}
+#| label: figure5
+#| echo: false
+#| message: false
+#| fig.align: 'center'
+#| fig.cap:
+#| out.width: '100%'
+knitr::include_graphics(here(""))
+```
+
+
+
+# DISCUSSION
+
+<!-- ? Principle findings -->
+<!-- A lack of rapid, user-friendly, accessible, scalable and accurate diagnostic methods to quantify cellular immunity prevents large population studies. Considering that diagnostic centers around the world have ramped up the setup of qPCR with reverse transcription (RT–qPCR)-based facilities, we developed a cell morphology-based immune status checker?, which is amenable to periodic and repeated testing of patient samples, as it requires only 1 ml of blood and a 3-hour turnaround time. -->
+
+<!-- ? RI값의 차이에 대한 해석 -->
+
+RI ~ function of the cell
+RI ~ nucleus epigenetic change
+
+T1에서 보이는 변화는 CD8+ T cell의 activation으로 인한 변화이지 않을까?
+T cell의 활성화가 central DNA pattern과 increase nuclear size로 대변된다[@Gupta2012Developmental].
+
+<!-- ? T cell morphology rather than circulating substances -->
+
+기본적으로 cytokine release는 cell에서 일어나는데 이러한 cell의 변화가 먼저 생기고 cytokine release가 일어나는 것이다. 따라서 cell morphology를 측정하는 것이 더 빠르게 면역 반응을 볼 수 있는 방법이다.[@]
+Importantly, circulating substances might not represent the cellular response very well and other types of markers might be more relevant[@Cohen2015Sepsis].
+
+<!-- ? Immune status measurement rather than Flowcytometry or ELIspot, gene expression  -->
+
+Takes only 1 ml of blood and a 3-hour turnaround time.
+다른 것들은 시간이 많이 걸린다.
+
+<!-- ? Strength -->
+
+In a single droplet of blood, there are many T cells present, and using only three or more images, we obtain almost 100% performance.
+
+<!-- ? Limitation -->
+
+The sample size was small, however, we recruited patients longitudinally.
+
+<!-- ? Conclusion -->
+
+In conclusion,
+our approach represents a flexible strategy that can be easily used to detect the presence of T cells
+even help to diagnosis and predict prognosis of sepsis.
+
+<!-- In conclusion, the assays presented here are based on the ability of SARS-CoV-2 T cells to respond to different peptides covering different proteins of the virus. With the possibility to use different peptide pools, our approach represents a flexible strategy that can be easily used to detect the presence of T cells responding to (1) different viral proteins (that is nucleoprotein, polymerase and so on), that have an important role in protection8,40, and (2) emerging mutant strains, thus immediately gauging the impact that viral mutations might have on cellular immunity36,37. This could be relevant for immunocompromised populations41,42, and to evaluate vaccine effectiveness in a time-sensitive manner. -->
+
+# REFERENCE
+
+::: {#refs}
+:::
+
+# MATERIALS AND METHODS
+
+<!-- *Method 부분이 아직 정확히 공유 안 되었지만, 저희는 pattern에 집중해서 보는 방식으로 했고, 면역 상태의 변화를 볼 수 있다라는 것을 주장하는 논문입니다. 그래서 인풋도 그곳을 집중해서 볼 수 있도록 강제했습니다.
+*저희는 내부 패턴의 변화를 보게 학습시켰습니다.
+*저희 CAM이 RI 분포와 유사하다는 것을 보여주는 거 정도로 그림 이쁘게 마무리할 수 잇다고 봅니다.-->
+
+## Study samples and clinical adjudication
+
+The septic shock cohorts comprised subjects with septic shock who presented to the ED at the Severance hospital in Korea. Informed consent was obtained from subjects or their surrogates. To define the trajectory of septic shock, for each individual, data were collected and blood samples were drawn with EDTA Vacutainer tubes (BD Biosciences) near septic shock diagnosed ([[T1]]), septic shock was resolved ([[T2]]), and before discharge ([[T3]]). The study was approved by the institutional review board of Severance Hospital, Yonsei University Health System, Seoul, Korea, and all patients provided informed consent (IRB No.4-2021-1236).
+
+The study cohort was enrolled in the ED at the Severance Hospital from April 2022 to June 2022. They consisted of people with septic shock, defined by Sepsis-3 consensus definitions[@], specifically, (1) with suspected infection, (2) 2 or more criteria of qSOFA, which consists of respiratory rate >= 22/min, altered mentation, and systolic blood pressure <= 100 mmHg, were satisfied, (3) an acute change in total SOFA score[@] ≧ 2 points consequent to the infection. Study samples were collected within 12 h of subject's arrival at the ED. Patients with followings were excluded: (1) age under 19, (2) pregnant or lactating, (3) active cancer status (4) acute stroke, (5) acute cardiovascular disease, (6) acute burn, (7) acute gastrointestinal bleeding or within the last three months of bleeding, (8) taking immunosuppressive drugs after organ transplantation, (9) taking immunosuppressive drugs for autoimmune disease, (10) immunodeficiency conditions that have been diagnosed before, or that have CD4 cell counts below 350 G/L, (11) neutropenia (neutropenia < 500 G/L) or if the neutrophils were 500-1000 G/L due to chemotherapy and were expected to decrease, (12) diagnosed with adrenal dysfunction, (13) prescribed steroid equivalent to or greater than 0.5 mg/kg/day prednisone, (14) active tuberculosis, (15) cystic fibrosis, (16) post-traumatic, (17) who needed immediate surgery, and (18) the state of Do-Not-Resuscitate (DNR). The study was approved by the institutional review board of Severance Hospital, Yonsei University Health System, Seoul, Korea, and all patients provided informed consent.
+
+The healthy cohorts consisted of a total of 20 volunteer healthy patients as a control group to compare with a cohort of septic shock patients.
+
+## Isolation PBMCs from whole blood
+
+Peripheral whole blood was collected in EDTA tubes and processed fresh via Ficoll-Paque Plus separation (GE Healthcare, 17144002). The blood was first diluted with 5 ml 2 mM EDTA-PBS (Invitrogen, 1555785-038), before 10-20 ml of diluted blood was carefully layered onto 15 ml of Ficoll in a 50 ml falcon tube. The sample was centrifuged at 900g for 30 min at room temperature. The plasma layer was carefully separated and the PBMC layer was collected using a sterile Pasteur pipette. The PBMC layer was washed with three volumes of EDTA-PBS by centrifugation at 500g for 5 min. The pellet was suspended in EDTA-PBS and centrifuged again at 400g for 5 min. The PBMC pellet was collected, and the cell number and viability were assessed using Trypan blue (The Countess II Automated Cell Counter, ThermoFisher, USA).
+
+## Sorting cells
+
+The magnetic activated cell sorting (MACS), a typical method for isolating the cells from a mixed population, was used for cell sorting (MACS from Miltenyi Biotec, Bergisch Gladbach, Germany)[@]. The [[CD8+ T cell]]s were negatively selected by MACS. Isolated cells were kept at 4°C to keep the viability of the cells. 80 μL isolation buffer and 20 μL MicroBeads were added and mixed the cells in the incubator for 15 minutes at a temperature 4°C. By setting the magnetic stand and column for sorting we first equilibrate the column by washing 3mL of the isolation buffer. Next to collect each of lymphocytes, we withdrew the column from the magnetic rack and set up a conical tube. By adding 5mL of isolation buffer, we pumped the solution through the column to extract the final sorted cells from the collection tube.
+
+## 3D RI tomography setup and data acquisition
+
+We took three-dimensional (3D) refractive index (RI) images of the CD8 T cells with 3-D quantitative phase imaging (QPI) system [@], which is commercialized and dubbed holotomography (HT-2H, Tomocube Inc., Daejeon, Republic of Korea) [@]. The digital micromirror device scans the various illumination angles and the 3D RI tomogram is reconstructed from the sinogram of 2D QPI measurements under the principle of optical diffraction tomography [@].
+
+## RI distribution 보는 방법 (shell)
+
+## Image preprocessing and data augmentation. (종현 - 아래 주석 참고해서 다음 내용 수정해주세요)
+
+<!-- *The 2,845 cm-1 image was subtracted from the 2,930 cm-1 image, and the resultant image was concatenated
+to generate a three-channel image (2,930 cm-1 minus 2,845 cm-1, red; 2,845 cm-1, green; 2,930 cm-1, blue). A 300 x 300-pixel2 sliding window algorithm with 100-pixel step size (both horizontal and vertical directions) and valid padding
+was used to generate image patches. This single-scale sliding window method
+over high-resolution, high-magnification images has the following advantages:
+(1) accommodates the image input size of most CNN architectures without downsampling; (2) allows for efficient, graphical processing, unit-based, model implementation; (3) boosts the number of training and inference images by approximately an order of magnitude; (4) allows for better learning of high- frequency image features; and is (5) faster and (6) easier to implement compared with multi-scale networks. Previous multi-scale CNN implementations have not yielded better performance for image classification tasks involving histologic images36. In addition, the use of larger, lower-magnification images complicates image label assignment in the setting of multiple class labels applying to separate regions within a single image (that is, white matter, tumor tissue, nondiagnostic gliotic tissue, and so on), which introduces an additional tunable hyperparameter to identify an optimal class-labeling strategy. This problem is effectively avoided using high-magnification patches, where multiple class labels for a single image
+are rare. To optimize image contrast, the bottom and top 3% of pixels by intensity from each channel were clipped and images rescaled. All image patches in the training, validation and testing datasets were reviewed and labeled by study authors (T.C.H, S.S.K., S.L, A.R.A. and E.U.). To accommodate class imbalance due to variable incidence rates between the CNS tumors included in the present study, oversampling was used for the underrepresented classes. We used multiple, label- preserving, affine transformations for data augmentation, including any uniformly distributed, random combination of rotation, shift and reflection. All images were mean zero centered by subtracting the channel mean of the training set.* -->
+
+## CNN training (종현 - 아래 주석 참고해서 다음 내용 수정해주세요)
+
+<!-- A total of 13 diagnostic classes were selected that (1) represent the most common CNS tumors11,22 and (2) optimally inform intraoperative decisions that bring about surgical goals. Classes included malignant glioma (glioblastoma and diffuse midline glioma, World Health Organization (WHO) grade IV),
+diffuse lower-grade gliomas (oligodendrogliomas and diffuse astrocytomas, WHO grades II and III), pilocytic astrocytoma, ependymoma, lymphoma, metastatic tumors, medulloblastoma, meningioma, pituitary adenoma, gliosis/reactive astrocytosis/treatment effect, white matter, gray matter and nondiagnostic tissue. We implemented the Google (Google LLC) Inception-ResNet-v2 architecture
+with 55.8 million trainable parameters randomly initialized. Similar to previous studies, our preliminary experiments using pretrained weights from the ImageNet challenge did not improve model performance, probably due to the large domain difference and limited feature transferability between histologic images and natural scenes (see Extended Data Fig. 6)36,37. The network was trained on approximately 2.5 million unique patches from 415 patients using a categorical cross-entropy loss function weighted using inverse class frequency. A randomly selected 16-patient validation set, imaged using the NIO Imaging System at UM, was used for hyperparameter tuning and model selection based on patch-level classification accuracy. We used the Adam optimizer with an initial learn rate of 0.001, β1 of
+0.9 and β2 of 0.999 (exponential decay rates), ε of $$10^{-8}$$ (constant for numerical stability) and a 32-image batch size. An early stopping callback was used with a minimum validation accuracy increase of 0.05 and 5 epoch patients (see Extended Data Fig. 1). Training, validation and testing were done using the high-level Python-based neural network API, Keras (v.2.2.0), with a TensorFlow (v.1.8.0)38 backend running on two NVIDIA GeForce 1080 Ti graphical processing units. -->
+
+## Visual explanation
+
+We used Grad-CAM[@] to derive visual explanation by localizing the image area that most influences the decision made by the deep learnig model. <!-- We also used Guided Grad-CAM[@] to quantify pixel contribution to the final predicted classification output. -->
+
+## Statistical analysis
+
+We used PR curve and ROC curve to describe the classification ability of [[the deep learning model]]. The PRC was demonstrated to be more informative than receiver-operating curve on imbalanced datasets[@]. We created the PR curve by plotting recall rate (also known as sensitivity) against precision (also known as positive predictive rate) by varying the predicted probability threshold. The ROC curve was created by plotting recall rate against negative predictive rate (also known as specificity). The F1 metric is defined as harmonic mean between precision and recall rate, which is calculated as F1 = 2 _ precision _ recall/(precision + recall). The 95% confidence intervals for sensitivity, specificity, positive predictive rate, and negative predicted rate were calculated by the Clopper-Pearson method[@]. We plotted PR curve and calculated the AUPRC with R package PRROC[@] (version 1.3.1). We plotted the ROC curve and AUROC with R package pROC (version 1.10.0)[@]. Statistical analysis was conducted with R software (version 3.4.3)[@]. We used AUPRC as the primary outcome to measure the performance of [[the deep learning model]]. We used precision, recall rate and F1 score when comparing the classification ability of CRCNet with endoscopists.
+
+## Reporting Summary
+
+Further information on research design is available in the Nature Research Reporting Summary linked to this article.
+
+<!--
+2.8. Preprocess
+
+2 Quality labeling & control
+Quality label tool show Brightfield and Maximum Intensity projection (MIP) cell images with Stream lit image component. Human labelers see the images and check the quality with the established rules we made. We filtered out the low-quality images by manually. Low resolution images and the noised-background images were excluded. Cells began to divide on their own due to apoptosis were also excluded. We additionally exclude the case where two or more cells were too closely adjoined. (Figure 2A)
+
+3 Center labeling & crop
+3D images were showed in XY axis and YZ axis. We created custom component which can extract X, Y, Z coordinate when labeler click the center of the images. Custom component was created with React framework and typescript.
+To position every cell at the center of image, we first labelled center points of each image by using the labelling tool. We took coordinates for the center point on the 2D image of XY and YZ axes image. Based on the coordinate points taken, we applied them to each image to match the center as equally as possible. Then we resized the images from 256x256x128 (width, height, depth) pixels to 128x128x64 pixels. By resizing the images, we minimized the background of the image and reduced the data size for deep learning model train. (Figure 2B)
+
+
+2.10. Data normalization
+To accommodate for imaging discrepancies, the images were min-max normalized per image [6]. The normalization of per images were performed using the min-max normalization method, the following formula:
+Z_(x,y,z)=  ((X_(x,y,z)-min⁡(X)))/((max⁡(X)-min⁡(X)))
+Where Zx,y,z the (x,y,z) pixel normalized value in the dataset Xx,y,z the (x,y,z) pixel value in the dataset, min(x) and max(x) the minimum and maximum value in the dataset, respectively.
+
+
+2.11. Deep learning model implementation
+The model for discriminating the septic shock timepoints was developed with 3D Artificial Neural Network (ANN), the Convolutional Neural Network (CNN) based image recognition model [7][8]. (Figure 3)
+
+
+ 2.12. Training
+Because the goal of the model was to solve the classification problem, the cross-entropy loss was used as a loss function [9]. The stochastic gradient descent algorithm (SGD) optimization algorithm was used to iteratively optimize in each phase, at a batch size of 16 [10]. We used the cosine annealing scheduler to adjust the learning rate to 0.0001 [11]. The hyperparameters of the model were precisely described in Table 1.
+We applied random rotation, horizontal flip, and vertical flip to prevent overfitting. In the training stage, PyTorch (version 1.12) was used for all deep learning tasks. Our model was trained using on NVIDIA Quadro RTX 8000 GPU 96Gb, with CUDA version 11.4.   -->
+
+# Data availability
+
+# Code availability
+
+# Reference
+
+# Acknowledgements
+
+# Competing interests
+
+# Additional information

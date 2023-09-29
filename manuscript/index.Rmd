@@ -1,0 +1,48 @@
+---
+title: ""
+output:
+  bookdown::word_document2:
+    reference_docx: manuscript_style.docx
+documentclass: article
+fontsize: 11pt
+bibliography: [2022-tomocube-sepsis.bib]
+csl: nature.csl
+link-citations: yes
+header-includes:
+  - \usepackage{kotex}
+  - \setmainhangulfont{나눔명조}
+  - \usepackage{fontspec}
+  - \setmainfont{Times New Roman}
+  - \usepackage{titletoc}
+  - \usepackage{textcomp}
+  - \usepackage{booktabs}
+  - \usepackage{flafter}
+  - \usepackage{makecell}
+  - \usepackage{float}
+  - \usepackage{titling}
+  - \usepackage{anyfontsize}
+  - \usepackage{longtable}
+  - \usepackage{array}
+  - \usepackage{multirow}
+  - \usepackage{mathptmx}
+  - \usepackage{adjustbox}
+  - \usepackage{subfig}
+  - \usepackage{setspace}
+  - \usepackage{filecontents}
+  - \usepackage{pdflscape}
+  - \newcommand{\blandscape}{\begin{landscape}}
+  - \newcommand{\elandscape}{\end{landscape}}
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+library(feather)
+library(here)
+library(tidyverse)
+library(kableExtra)
+library(gtsummary)
+
+title_name <- "Three-dimensional label-free morphological phenotype of CD8+ T cell as rapid sepsis diagnostic marker using optical diffraction tomography"
+```
